@@ -11,7 +11,8 @@
     "lint:css": "npx stylelint styles/*.css",
     "lint:js": "npx eslint script/**/*.js",
     "test": "echo 'No tests specified'",
-    "deploy": "echo 'Deploy to your hosting service'"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d ."
   },
   "keywords": [
     "portfolio",
@@ -27,15 +28,16 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ahmadraza301/portfolio.git"
+    "url": "git+https://github.com/Ahmadraza301/portfolio.git"
   },
   "bugs": {
     "url": "https://github.com/Ahmadraza301/portfolio/issues"
   },
-  "homepage": "https://github.com/Ahmadraza301/portfolio#readme",
+  "homepage": "https://ahmadraza301.github.io/portfolio",
   "devDependencies": {
-    "serve": "^14.2.0",
-    "live-server": "^1.2.2"
+    "gh-pages": "^6.3.0",
+    "live-server": "^1.2.2",
+    "serve": "^14.2.0"
   },
   "engines": {
     "node": ">=14.0.0",
