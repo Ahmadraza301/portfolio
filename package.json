@@ -1,0 +1,51 @@
+{
+  "name": "ahmad-raza-ansari-portfolio",
+  "version": "1.0.0",
+  "description": "A modern, responsive portfolio website for Ahmad Raza Ansari - Fullstack Web Developer",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx live-server --port=3000",
+    "build": "echo 'No build process required for static site'",
+    "lint:html": "npx htmlhint index.html",
+    "lint:css": "npx stylelint styles/*.css",
+    "lint:js": "npx eslint script/**/*.js",
+    "test": "echo 'No tests specified'",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d ."
+  },
+  "keywords": [
+    "portfolio",
+    "web-developer",
+    "fullstack",
+    "responsive",
+    "modern",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "Ahmad Raza Ansari",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ahmadraza301/portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ahmadraza301/portfolio/issues"
+  },
+  "homepage": "https://ahmadraza301.github.io/portfolio",
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "live-server": "^1.2.2",
+    "serve": "^14.2.0"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
