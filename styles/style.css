@@ -2,6 +2,13 @@
 
 :root {
     --yellow: lightgreen;
+    --primary-bg: #111;
+    --secondary-bg: #1a1a1a;
+    --accent-color: #333;
+    --text-primary: #fff;
+    --text-secondary: #eee;
+    --text-muted: #aaa;
+    --transition: all 0.3s ease;
 }
 
 * {
@@ -23,6 +30,7 @@
 html {
     font-size: 62.5%;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 html::-webkit-scrollbar {
@@ -38,7 +46,7 @@ html::-webkit-scrollbar-thumb {
 }
 
 body {
-    background: #111;
+    background: var(--primary-bg);
     overflow-x: hidden;
     padding-left: 35rem;
 }
@@ -52,12 +60,30 @@ section {
 
 .btn {
     padding: 1rem 3rem;
-    background: #333;
-    color: #fff;
+    background: var(--accent-color);
+    color: var(--text-primary);
     cursor: pointer;
     margin-top: 1rem;
     font-size: 2rem;
     border-radius: 5rem;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
 }
 
 .btn i {
@@ -67,7 +93,15 @@ section {
 
 .btn:hover {
     background: var(--yellow);
-    color: #111;
+    color: var(--primary-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(144, 238, 144, 0.3);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
 }
 
 .heading {
@@ -75,8 +109,25 @@ section {
     margin-bottom: 3rem;
     font-size: 4rem;
     padding-bottom: 2rem;
-    border-bottom: .1rem solid #fff4;
-    color: #fff;
+    border-bottom: .1rem solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    position: relative;
+}
+
+.heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--yellow);
+    transition: width 0.5s ease;
+}
+
+.heading:hover::after {
+    width: 100px;
 }
 
 .heading span {
@@ -90,13 +141,14 @@ header {
     z-index: 1000;
     height: 100%;
     width: 35rem;
-    background: #1a1a1a;
+    background: var(--secondary-bg);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-flow: column;
     text-align: center;
-    transition: .2s linear;
+    transition: var(--transition);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
 }
 
 header .user img {
@@ -451,23 +503,6 @@ header .navbar ul li a:hover {
 }
 
 /* Style for the skill image containers */
-/* Style for the skill image containers */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* media queries  */
 
@@ -649,4 +684,379 @@ header .navbar ul li a:hover {
 .navbar::-webkit-scrollbar-thumb:hover {
     background: #77CC77;
     /* Thumb color on hover (you can change this) */
+}
+
+/* Animation classes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-in {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.skill-hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(144, 238, 144, 0.3);
+}
+
+/* Enhanced skill styling */
+.skill {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border: 1px solid transparent;
+}
+
+.skill:hover {
+    border-color: var(--yellow);
+    background: rgba(144, 238, 144, 0.1);
+}
+
+.skill img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: 0 auto;
+    transition: var(--transition);
+}
+
+.skill:hover img {
+    transform: scale(1.1);
+}
+
+/* Enhanced project styling */
+.project {
+    background: linear-gradient(135deg, var(--yellow), #90EE90);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    padding: 25px;
+    width: 320px;
+    text-align: left;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    animation: scaleIn 0.6s ease forwards;
+    opacity: 0;
+}
+
+.project::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s;
+}
+
+.project:hover::before {
+    left: 100%;
+}
+
+.project:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.project img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: var(--transition);
+}
+
+.project:hover img {
+    transform: scale(1.05);
+}
+
+.project-title {
+    font-size: 2.2rem;
+    margin-top: 15px;
+    color: var(--primary-bg);
+    font-weight: 600;
+}
+
+.project-description {
+    font-size: 1.6rem;
+    margin-top: 12px;
+    color: var(--primary-bg);
+    line-height: 1.4;
+}
+
+/* Enhanced form styling */
+.contact .row form .box {
+    padding: 1.8rem;
+    margin: 1.2rem 0;
+    background: rgba(51, 51, 51, 0.8);
+    color: var(--text-primary);
+    text-transform: none;
+    font-size: 1.7rem;
+    width: 100%;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: var(--transition);
+}
+
+.contact .row form .box:focus {
+    border-color: var(--yellow);
+    background: rgba(51, 51, 51, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(144, 238, 144, 0.2);
+}
+
+.contact .row form .box::placeholder {
+    text-transform: capitalize;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Enhanced counter boxes */
+.about .row .counter .box {
+    width: 20rem;
+    background: var(--accent-color);
+    text-align: center;
+    padding: 2.5rem;
+    margin: 2rem;
+    border-radius: 15px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.about .row .counter .box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(144, 238, 144, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.about .row .counter .box:hover::before {
+    transform: translateX(100%);
+}
+
+.about .row .counter .box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.about .row .counter .box span {
+    font-size: 4.5rem;
+    color: var(--yellow);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.about .row .counter .box h3 {
+    font-size: 2.2rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* Enhanced education boxes */
+.education .box-container .box {
+    width: 27rem;
+    margin: 4rem 1rem;
+    padding-left: 4rem;
+    border-left: .3rem solid var(--yellow);
+    position: relative;
+    transition: var(--transition);
+    background: rgba(34, 34, 34, 0.8);
+    padding: 2rem;
+    border-radius: 0 15px 15px 0;
+}
+
+.education .box-container .box:hover {
+    transform: translateX(10px);
+    background: rgba(34, 34, 34, 1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.education .box-container .box i {
+    position: absolute;
+    top: -1.5rem;
+    left: -2.5rem;
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    line-height: 5rem;
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primary-bg);
+    background: var(--yellow);
+    transition: var(--transition);
+}
+
+.education .box-container .box:hover i {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 5px 15px rgba(144, 238, 144, 0.4);
+}
+
+/* Enhanced scroll to top button */
+.top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 100;
+    display: none;
+    height: 4.5rem;
+    width: 4.5rem;
+    background: var(--yellow);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.top:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.top img {
+    width: 2.5rem;
+    height: 2.5rem;
+    filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+}
+
+/* Loading spinner for form submission */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+/* Responsive improvements */
+@media (max-width: 1200px) {
+    html {
+        font-size: 55%;
+    }
+    
+    .home {
+        padding: 1rem 4rem;
+    }
+    
+    .project {
+        width: 300px;
+    }
+}
+
+@media (max-width: 991px) {
+    header {
+        left: -120%;
+    }
+    
+    #menu {
+        display: block;
+    }
+    
+    header.toggle {
+        left: 0%;
+    }
+    
+    body {
+        padding: 0;
+    }
+    
+    .project {
+        width: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 50%;
+    }
+    
+    .footer-icons {
+        text-align: center;
+    }
+    
+    .project {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .about .row .counter .box {
+        width: 100%;
+        max-width: 25rem;
+    }
+}
+
+@media (max-width: 400px) {
+    header {
+        width: 100vw;
+    }
+    
+    .heading {
+        margin: 0 3rem;
+        font-size: 3.5rem;
+    }
+    
+    .about .row .counter .box {
+        width: 100%;
+    }
+    
+    .education .box-container .box {
+        width: 100%;
+    }
+    
+    .portfolio .box-container .box {
+        width: 100%;
+    }
+    
+    .contact .row form {
+        margin: 3rem 0;
+    }
+    
+    .project {
+        padding: 20px;
+    }
 }
